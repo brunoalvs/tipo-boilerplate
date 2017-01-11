@@ -1,0 +1,55 @@
+// Core variables and mixins
+@import "bootstrap/variables";
+@import "bootstrap/mixins";
+
+@import "settings";
+
+.starter-template {
+    padding: 40px 15px;
+    text-align: center;
+}
+
+.navbar {
+    border: 0 !important;
+    > .navbar-header {
+
+        > .navbar-toggle {
+
+            > .icon-bar {
+                background: $black;
+            }
+        }
+    }
+
+}
+
+.banner-cover {
+    height: 800px;
+    // background-size: cover;
+    // background-position: center center;
+    // background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 5em 0;
+
+    h1, h2, p {
+        color: white;
+    }
+
+    @media screen and (max-width: $screen-sm) {
+        height: 600px;
+    }
+}
+
+#parallaxBar {
+    background-image: url(../images/img_bg_2.jpg);
+    background-color: #004c82;
+    background-position: 50% 0;
+    position: relative;
+}
+
+.qlq {
+    height: 4000px;
+}
