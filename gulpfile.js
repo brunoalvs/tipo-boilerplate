@@ -3,7 +3,7 @@
 var gulp = require('gulp'),
     connect = require('gulp-connect-php'),
     browserSync = require('browser-sync'),
-    proxyLink = 'http://localhost/tipo-boilerplate/build',
+    proxyLink = 'http://localhost/tipo-boilerplate/build', //Endereço do seu localhost (para usar com PHP)
 
     sass = require('gulp-sass'),
     prefix = require('gulp-autoprefixer'),
@@ -32,13 +32,13 @@ var gulp = require('gulp'),
 //     });
 // });
 
-gulp.task('browserSync', function() {
-    browserSync.init({
-        server: {
-            baseDir: 'dist'
-        },
-    })
-});
+// gulp.task('browserSync', function() {
+//     browserSync.init({
+//         server: {
+//             baseDir: 'dist'
+//         },
+//     })
+// });
 
 gulp.task('dev', function() {
     connect.server({}, function() {
@@ -51,7 +51,9 @@ gulp.task('dev', function() {
 
 gulp.task('sass', function() {
     return gulp.src('build/assets/sass/**/*.{sass,scss}')
+        .pipe(sourcemaps.init())
         .pipe(sass()) // Convert Sass to CSS with gulp-sass
+        .pipe(sourcemaps.write())
         .pipe(gulp.dest('build/assets/css'))
         .pipe(browserSync.reload({
             stream: true
@@ -70,7 +72,7 @@ gulp.task('useref', function() {
 
 gulp.task('images', function(){
   return gulp.src('build/assets/images/**/*.+(png|jpg|jpeg|gif|svg)')
-  // Caching images that ran through imagemin
+  // Cache de imagens que foram minificadas com o imagemin
   .pipe(cache(imagemin({
       interlaced: true
     })))

@@ -10,7 +10,7 @@
 
 .navbar {
   position: relative;
-  min-height: $navbar-height; // Ensure a navbar always shows (e.g., without a .navbar-brand in collapsed mode)
+  min-height: 20px; // Ensure a navbar always shows (e.g., without a .navbar-brand in collapsed mode)
   border: 1px solid transparent;
 
   // Prevent floats from breaking the navbar

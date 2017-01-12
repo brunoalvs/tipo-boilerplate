@@ -1,7 +1,7 @@
 <?php
     $NomeEmpresa = 'Nome Empresa';
     $slogan =   '';
-    $author = 'www.tipopublicidade.com.br';
+    $author = 'http://www.tipopublicidade.com.br';
     $creditos = 'Tipo Publicidade';
     $url = 'http://localhost/staminanew';
     $ramo = '';
