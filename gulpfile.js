@@ -3,7 +3,7 @@
 var gulp = require('gulp'),
     connect = require('gulp-connect-php'),
     browserSync = require('browser-sync').create(),
-    proxyLink = 'http://localhost/nr2/public_html',
+    proxyLink = 'http://localhost/tipo-boilerplate/build',
 
     sass = require('gulp-sass'),
     prefix = require('gulp-autoprefixer'),
@@ -16,7 +16,8 @@ var gulp = require('gulp'),
     imagemin = require('gulp-imagemin'),
     cache = require('gulp-cache'),
     useref = require('gulp-useref'),
-    del = require('del');
+    del = require('del'),
+    runSequence = require('run-sequence');
 
 
 // gulp.task('connect', function() {
@@ -39,29 +40,32 @@ gulp.task('browserSync', function() {
     })
 });
 
+gulp.task('dev', function() {
+    connect.server({}, function() {
+        browserSync({
+            proxy: proxyLink
+        })
+    });
+});
+
+
 gulp.task('sass', function() {
     return gulp.src('build/assets/sass/**/*.{sass,scss}')
         .pipe(sass()) // Convert Sass to CSS with gulp-sass
-        .pipe(gulp.dest('dist/assets/css'))
+        .pipe(gulp.dest('build/assets/css'))
         .pipe(browserSync.reload({
             stream: true
         }))
 });
 
 gulp.task('useref', function() {
-    return gulp.src('build/**/*.{html,php}')
+    return gulp.src('build/*.html')
         .pipe(useref())
         // Minifies only if it's a JavaScript file
         .pipe(gulpIf('*.js', uglify()))
         // Minifica apenas se tiver um arquivo CSS
         .pipe(gulpIf('*.css', cssnano()))
         .pipe(gulp.dest('dist'))
-});
-
-gulp.task('watch', ['browserSync', 'sass'], function() {
-    gulp.watch('build/assets/sass/**/*.{sass,scss}', ['sass']);
-    gulp.watch('build/*.php', browserSync.reload);
-    gulp.watch('build/assets/js/**/*.js', browserSync.reload);
 });
 
 gulp.task('images', function(){
@@ -78,15 +82,28 @@ gulp.task('fonts', function() {
   .pipe(gulp.dest('dist/assets/fonts'))
 })
 
-// gulp.task('build', [`clean`, `sass`, `useref`, `images`, `fonts`], function (){
-//   console.log('Building files');
-// })
-
 gulp.task('clean:dist', function() {
     return del.sync('dist');
 });
 
-gulp.task('default', ['connect']);
+gulp.task('watch', ['browserSync', 'sass'], function() {
+    gulp.watch('build/assets/sass/**/*.{sass,scss}', ['sass']);
+    gulp.watch('build/**/*.{php,html}', browserSync.reload);
+    gulp.watch('build/assets/js/**/*.js', browserSync.reload);
+});
 
+
+gulp.task('build', function (callback) {
+    runSequence('clean:dist',
+        ['sass', 'useref', 'images', 'fonts'],
+        callback
+    )
+})
+
+gulp.task('default', function(callback) {
+    runSequence(['sass', 'dev', 'watch'],
+        callback
+    )
+})
 
 // https://css-tricks.com/gulp-for-beginners/
