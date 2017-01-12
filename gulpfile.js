@@ -2,7 +2,7 @@
 
 var gulp = require('gulp'),
     connect = require('gulp-connect-php'),
-    browserSync = require('browser-sync').create(),
+    browserSync = require('browser-sync'),
     proxyLink = 'http://localhost/tipo-boilerplate/build',
 
     sass = require('gulp-sass'),
@@ -44,7 +44,7 @@ gulp.task('dev', function() {
     connect.server({}, function() {
         browserSync({
             proxy: proxyLink
-        })
+        });
     });
 });
 
@@ -86,12 +86,15 @@ gulp.task('clean:dist', function() {
     return del.sync('dist');
 });
 
-gulp.task('watch', ['browserSync', 'sass'], function() {
+gulp.task('watch', function() {
     gulp.watch('build/assets/sass/**/*.{sass,scss}', ['sass']);
-    gulp.watch('build/**/*.{php,html}', browserSync.reload);
-    gulp.watch('build/assets/js/**/*.js', browserSync.reload);
+    gulp.watch('build/**/*.{php,html}').on('change', function() {
+        browserSync.reload();
+    });
+    gulp.watch('build/assets/js/**/*.js').on('change', function() {
+        browserSync.reload();
+    });
 });
-
 
 gulp.task('build', function (callback) {
     runSequence('clean:dist',

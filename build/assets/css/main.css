@@ -11,8 +11,8 @@
   height: 800px;
   display: flex;
   align-items: center;
-  justify-content: center;
   flex-direction: column;
+  justify-content: center;
   padding: 5em 0; }
   .banner-cover h1, .banner-cover h2, .banner-cover p {
     color: white; }
