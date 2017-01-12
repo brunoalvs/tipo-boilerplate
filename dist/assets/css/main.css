@@ -1,0 +1,30 @@
+.starter-template {
+  padding: 40px 15px;
+  text-align: center; }
+
+.navbar {
+  border: 0 !important; }
+  .navbar > .navbar-header > .navbar-toggle > .icon-bar {
+    background: #090909; }
+
+.banner-cover {
+  height: 800px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 5em 0; }
+  .banner-cover h1, .banner-cover h2, .banner-cover p {
+    color: white; }
+  @media screen and (max-width: 768px) {
+    .banner-cover {
+      height: 600px; } }
+
+#parallaxBar {
+  background-image: url(../images/img_bg_2.jpg);
+  background-color: #004c82;
+  background-position: 50% 0;
+  position: relative; }
+
+.qlq {
+  height: 4000px; }
