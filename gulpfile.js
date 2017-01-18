@@ -19,7 +19,6 @@ var gulp = require('gulp'),
     del = require('del'),
     runSequence = require('run-sequence');
 
-
     // Sobe "servidor local" para desenvolvimento
     gulp.task('dev', function() {
         connect.server({}, function() {
@@ -33,8 +32,7 @@ var gulp = require('gulp'),
     gulp.task('sass', function() {
     return gulp.src('build/assets/sass/**/*.{sass,scss}')
         .pipe(sourcemaps.init())
-
-        .pipe(sass())
+        .pipe(sass({outputStyle: 'compressed'}))
         .pipe(sourcemaps.write())
         .pipe(gulp.dest('dist/assets/css'))
         .pipe(browserSync.reload({
