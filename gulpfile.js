@@ -89,25 +89,25 @@ var gulp = require('gulp'),
     // Compila todo o código para uma pasta de destino, o site gerado estará pronto para o deploy.
     gulp.task('build', function (callback) {
         runSequence('clean:dist',
-            ['sass', 'useref', 'images', 'fonts'],
+            ['sass', 'build:php', 'build:scripts', 'useref', 'images', 'fonts'],
             callback
         )
     });
 
     gulp.task('build:php', function() {
         return gulp.src('build/**/*.php')
-            .pipe(gulp.dest('dist/'))
+            .pipe(gulp.dest('dist'));
     });
 
-    gulp.task('build:js', function() {
+    gulp.task('build:scripts', function() {
         return gulp.src('build/assets/js/**/*.js')
             .pipe(uglify())
-            .pipe(gulp.dest('dist/'))
+            .pipe(gulp.dest('dist/assets/js/'));
     });
 
     // Tarefa Padrão
     gulp.task('default', function(callback) {
-        runSequence(['sass', 'dev', 'watch'],
+        runSequence(['build', 'dev', 'watch'],
             callback
         )
     });
