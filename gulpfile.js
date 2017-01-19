@@ -17,7 +17,8 @@ var gulp = require('gulp'),
     cache = require('gulp-cache'),
     useref = require('gulp-useref'),
     del = require('del'),
-    runSequence = require('run-sequence');
+    runSequence = require('run-sequence'),
+    notify = require('gulp-notify');
 
     // Sobe "servidor local" para desenvolvimento
     gulp.task('dev', function() {
@@ -38,6 +39,7 @@ var gulp = require('gulp'),
         .pipe(browserSync.reload({
             stream: true
         }))
+        .pipe(notify('CSS OK!'));
     });
 
     gulp.task('useref', function() {
