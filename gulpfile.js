@@ -33,13 +33,12 @@ var gulp = require('gulp'),
     gulp.task('sass', function() {
     return gulp.src('build/assets/sass/**/*.{sass,scss}')
         .pipe(sourcemaps.init())
-        .pipe(sass({outputStyle: 'compressed'}))
+          .pipe(sass({outputStyle: 'compressed'}))
         .pipe(sourcemaps.write())
         .pipe(gulp.dest('dist/assets/css'))
         .pipe(browserSync.reload({
             stream: true
-        }))
-        .pipe(notify('CSS OK!'));
+        }));
     });
 
     gulp.task('useref', function() {
