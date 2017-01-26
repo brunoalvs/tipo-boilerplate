@@ -48,7 +48,4 @@ Você não é obrigado a seguir o padrão de estrutura, mas recomendo que sempre
 	index.html
 ```
 
-
 ***PS:** Lembre-se de retirar a pasta `dist` do .gitignore*
-
-
