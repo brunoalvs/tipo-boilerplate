@@ -5,6 +5,7 @@ var gulp = require('gulp'),
     browserSync = require('browser-sync'),
     proxyLink = 'http://localhost/tipo-boilerplate/dist', //Endereço do seu localhost (para usar com PHP)
 
+    pug = require('gulp-pug'),
     sass = require('gulp-sass'),
     prefix = require('gulp-autoprefixer'),
     sourcemaps = require('gulp-sourcemaps'),
@@ -20,13 +21,21 @@ var gulp = require('gulp'),
     runSequence = require('run-sequence'),
     notify = require('gulp-notify');
 
-    // Sobe "servidor local" para desenvolvimento
-    gulp.task('dev', function() {
-        connect.server({}, function() {
-            browserSync({
-                proxy: proxyLink
-            });
-        });
+    // Sobe "servidor local" para desenvolvimento com browserSync
+	gulp.task('dev', function() {
+		browserSync.init({
+			server: {
+				baseDir: "dist/"
+			}
+		});
+	});
+
+
+    // Compila Pug para HTML
+    gulp.task('pug', function() {
+    	return gulp.src('build/**/*.{pug,jade}')
+			.pipe(pug({}))
+			.pipe(gulp.dest('dist/'))
     });
 
     // Compila Sass para CSS, com livereload (browserSync), autoprefixer e sourcemaps configurado.
@@ -88,7 +97,7 @@ var gulp = require('gulp'),
     // Compila todo o código para uma pasta de destino, o site gerado estará pronto para o deploy.
     gulp.task('build', function (callback) {
         runSequence('clean:dist',
-            ['sass', 'build:php', 'build:scripts', 'useref', 'images', 'fonts'],
+            ['sass', 'pug', 'build:scripts', 'useref', 'images', 'fonts'],
             callback
         )
     });

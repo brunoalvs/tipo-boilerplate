@@ -1,0 +1,66 @@
+head
+	meta(http-equiv="X-UA-Compatible", content="IE=edge")
+	meta(name="viewport", content="width=device-width, initial-scale=1")
+	meta(name="theme-color", content="#3082c4")
+	title= title
+
+	//- SEO
+	meta(name="title", content= title)
+	meta(name="description", content= description)
+	meta(name="keywords", content= keywords)
+	meta(name="language", content="pt-br")
+	meta(name="author", content= author)
+	meta(name="copyright", content= NomeEmpresa + " " + slogan)
+	meta(name="distribution", content="global")
+	meta(name="audience", content="all")
+	//- Está ai um problema que não sei como resolver! \/
+	meta(name="url", content="index")
+	meta(name="cassification", content= ramo)
+	meta(name="category", content= ramo)
+	meta(name="Page-Topic", content= title)
+	meta(name="rating", content="general")
+	meta(name="fone", content= tel)
+	meta(name="city", content= cidade)
+	meta(name="country", content="Brasil")
+	meta(property="publisher", content= creditos)
+
+	//- Google
+	link(rel="canonical", href= canonical)
+	meta(name="robots", content="index,follow")
+	meta(name="googlebot", content="index,follow")
+	meta(name="geo.placename", content="Brasil")
+	meta(name="geo.region", content= cidade)
+	meta(itemprop="name", content= NomeEmpresa)
+	meta(itemprop="description", content= description)
+	meta(itemprop="image", content= urlImage)
+
+	//- Google Plus
+	link(rel="author", href= linkGoogle)
+	link(rel="publisher", href= linkGoogle)
+
+	//- Twitter
+	meta(name="twitter:card", content= urlImage)
+	meta(name="twitter:site", content= canonical)
+	meta(name="twitter:title", content= title)
+	meta(name="twitter:description", content= description)
+	meta(name="twitter:creator", content= userTwitter)
+	meta(name="twitter:image:src", content= urlImage)
+
+	//- Facebook
+	meta(property="og:title", content= NomeEmpresa)
+	meta(property="og:type", content="website")
+	meta(property="og:url", content= canonical)
+	meta(property="og:site_name", content= NomeEmpresa)
+	meta(property="og:locale", content="pt_BR")
+	meta(property="og:image", content= urlImage)
+	meta(property="og:image:type", content="image/jpg")
+	meta(property="og:image:width", content="250")
+	meta(property="og:image:height", content="250")
+	meta(property="og:description", content= description)
+	meta(property="fb:admins", content= CodFanpage)
+	link(href= urlImage, rel="image_src")
+
+	link(rel="shortcut icon", href="favicon.ico")
+	link(rel="stylesheet", href="assets/css/main.css", type="text/css", media="all")
+
+	base(href="localhost:3000/tipo-boilerplate/", target="_blank")

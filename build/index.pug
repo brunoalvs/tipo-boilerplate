@@ -1,0 +1,37 @@
+//- index.pug
+- var NomeEmpresa = "Stamina"
+- var title = "Home"
+- var keywords = "Palavra 1"
+- var description = "This is a description page"
+
+doctype html
+html(lang="pt-br")
+	include includes/_head.pug
+
+	body
+		header
+			h1= NomeEmpresa
+
+			nav.menu-site
+				ul
+					li
+						a(href="#") Home
+					li
+						a(href="#") Produtos
+					li
+						a(href="#") Contato
+
+		section.content
+			figure
+				img.class(src="logo.gif", alt="imagem")
+
+			h2= title
+
+			p This is a first text line in page
+
+			p
+				| Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+				| incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+				| exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+			a.btn.btn-primary(href="#") Enviar
