@@ -1,7 +1,6 @@
 'use strict'
 
 var gulp = require('gulp'),
-    connect = require('gulp-connect-php'),
     browserSync = require('browser-sync'),
     proxyLink = 'http://localhost/tipo-boilerplate/dist', //Endereço do seu localhost (para usar com PHP)
 
@@ -29,7 +28,6 @@ var gulp = require('gulp'),
 			}
 		});
 	});
-
 
     // Compila Pug para HTML
     gulp.task('pug', function() {
@@ -100,11 +98,6 @@ var gulp = require('gulp'),
             ['sass', 'pug', 'build:scripts', 'useref', 'images', 'fonts'],
             callback
         )
-    });
-
-    gulp.task('build:php', function() {
-        return gulp.src('build/**/*.php')
-            .pipe(gulp.dest('dist'));
     });
 
     gulp.task('build:scripts', function() {
